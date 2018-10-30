@@ -9,9 +9,9 @@ import lejos.robotics.navigation.MovePilot;
 public class SelfDriving {
 
 	final static float wheelDiameter = 60;
-	final static float axleLength = 0;
+	final static float axleLength = 58;
 	final static float angularSpeed = 0;
-	final static float linearSpeed = 0;
+	final static float linearSpeed = 30; 
 	
 	public static void main(String[] args) {
 		RegulatedMotor mL = new EV3LargeRegulatedMotor(MotorPort.A);
@@ -19,8 +19,9 @@ public class SelfDriving {
 		
 		Wheel wL = WheeledChassis.modelWheel(mL, wheelDiameter).offset(-axleLength / 2);
 		Wheel wR = WheeledChassis.modelWheel(mR, wheelDiameter).offset(axleLength / 2);
-		Chassis ch = new WheeledChassis(new Wheel[] {wR, wL}, WheeledChassis.TYPE_DIFFERENTIAL);
-		MovePilot plt = new MovePilot(ch);
-		
+		Chassis chassis = new WheeledChassis(new Wheel[] {wR, wL}, WheeledChassis.TYPE_DIFFERENTIAL);
+		MovePilot plt = new MovePilot(chassis);
+		plt.setLinearSpeed(linearSpeed);
+		plt.travel(500);
 	}
 }
