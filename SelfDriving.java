@@ -21,7 +21,6 @@ public class SelfDriving {
 		Wheel wR = WheeledChassis.modelWheel(mR, wheelDiameter).offset(axleLength / 2);
 		Chassis chassis = new WheeledChassis(new Wheel[] {wR, wL}, WheeledChassis.TYPE_DIFFERENTIAL);
 		MovePilot plt = new MovePilot(chassis);
-		Thread t = new Watcher(); t.start();
 		plt.setLinearSpeed(linearSpeed);
 		plt.travel(500);
 		plt.travel(-500);
